@@ -1,25 +1,32 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
 
-" VUNDLE Plugins here 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set nocompatible
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'preservim/nerdtree'
-Plugin 'chriskempson/base16-vim'
-Plugin 'danilo-augusto/vim-afterglow'
-Plugin 'christoomey/vim-tmux-navigator'
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+	  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
 
-call vundle#end()            
+call plug#begin()
+
+Plug 'preservim/nerdtree'
+Plug 'chriskempson/base16-vim'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ctrlpvim/ctrlp.vim'
+
+call plug#end()            
 filetype plugin indent on   
 
+set shortmess+=I
 " Enable type file detection. Vim will be able to try to detect the type of file in use.
 filetype on
 
 " Load an indent file for the detected file type.
 filetype indent on
+
+" Always show the status line at the bottom, even if you only have one window open.
+set laststatus=2
 
 " Turn syntax highlighting on.
 syntax on
@@ -41,6 +48,10 @@ set smarttab
 set autoindent
 set smartindent
 
+set hidden
+
+" Enable searching as you type, rather than waiting till you press enter.
+set incsearch
 
 " colour scheme stuff
 "set termguicolors
@@ -56,10 +67,11 @@ set nobackup
 set nowb
 set noswapfile
 
+" Enable mouse support
+set mouse+=a
 
-
-" remappings for switching panes
 let mapleader = " "
+" remappings for switching panes
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -76,4 +88,7 @@ vnoremap <silent> <up> :m '<-2<CR>gv=gv
 " show hidden files in NERDTree
 let NERDTreeShowHidden=1
 " Toggle NERDTree
-nmap <silent> <leader>f :NERDTreeToggle<cr>
+nnoremap <silent> <leader>f :NERDTreeToggle<cr>
+
+" Disable audible bell because it's annoying.
+set noerrorbells visualbell t_vb=
