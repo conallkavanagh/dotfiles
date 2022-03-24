@@ -14,6 +14,9 @@ Plug 'chriskempson/base16-vim'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tomasr/molokai'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
 
 call plug#end()            
 filetype plugin indent on   
@@ -44,6 +47,7 @@ set wildmode=longest,list,full
 set tabstop=4
 set shiftwidth=4
 set smarttab
+set expandtab
 
 set autoindent
 set smartindent
