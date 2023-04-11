@@ -37,9 +37,6 @@ syntax on
 " Add line number on left-hand side.
 set number relativenumber
 
-" Set to system clipboard
-set clipboard=unnamedplus
-
 " set autocomplete with ctrl+n to activate
 set wildmode=longest,list,full
 
